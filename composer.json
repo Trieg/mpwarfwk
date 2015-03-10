@@ -1,5 +1,5 @@
 {
-    "name": "martiadrogue/framework",
+    "name": "martiadrogue/mpwarfwk",
     "description": "A MVC framework.",
     "require": {
         "php": ">=5.3.2"
