@@ -1,5 +1,5 @@
 <?php
-namespace  com\martiadrogue\mpwarfwk\component\connection\http;
+namespace Com\Martiadrogue\Mpwarfwk\Component\Connection\Http;
 
 /**
  *

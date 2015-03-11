@@ -1,9 +1,9 @@
 <?php
-namespace com\martiadrogue\mpwarfrw\component;
+namespace Com\Martiadrogue\Mpwarfwk\Component;
 require_once('../vendor/autoload.php');
 
-use com\martiadrogue\mpwarfwk\component\connection\http\Response;
-use com\martiadrogue\mpwarfwk\component\connection\http\Request;
+use \Com\Martiadrogue\Mpwarfwk\Component\Connection\Http\Response;
+use \Com\Martiadrogue\Mpwarfwk\Component\Connection\Http\Request;
 
 /**
  *
