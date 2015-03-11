@@ -1,5 +1,5 @@
 <?php
-namespace martiadrogue\mpwarfrw\connection\http;
+namespace macom\martiadrogue\mpwarfwk\component\connection\http;
 
 /**
  *
