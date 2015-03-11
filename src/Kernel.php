@@ -1,8 +1,8 @@
 <?php
 namespace martiadrogue\mpwarfrw;
 
-require_once 'Response.php';
-require_once 'Request.php';
+use martiadrogue\mpwarfrw\connection\http\Response;
+use martiadrogue\mpwarfrw\connection\http\Request;
 
 /**
  *
