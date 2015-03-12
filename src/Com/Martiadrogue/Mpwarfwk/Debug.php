@@ -1,5 +1,5 @@
 <?php
-namespace Com\Martiadrogue\Mpwarfwk\Component;
+namespace Com\Martiadrogue\Mpwarfwk;
 
 /**
  *

@@ -1,8 +1,8 @@
 <?php
-namespace Com\Martiadrogue\Mpwarfwk\Component;
+namespace Com\Martiadrogue\Mpwarfwk;
 
-use \Com\Martiadrogue\Mpwarfwk\Component\Connection\Http\Response;
-use \Com\Martiadrogue\Mpwarfwk\Component\Connection\Http\Request;
+use \Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
+use \Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 
 /**
  *
