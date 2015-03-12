@@ -1,19 +1,28 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk;
 
-use \Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
-use \Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
+use Com\Martiadrogue\Mpwarfwk\Debug;
+use Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
+use Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 
 /**
  *
  */
 class Kernel
 {
-    private $request;
+    public function __construct() {
+        Debug::enable();
+    }
 
-    public function handle(Request $request)
+    public function build()
     {
-        $this->request = $request;
+        $request = new Request();
+        $response = $this->handle($request);
+        $response->send();
+    }
+
+    private function handle(Request $request)
+    {
         $response = new Response();
         return $response;
     }
