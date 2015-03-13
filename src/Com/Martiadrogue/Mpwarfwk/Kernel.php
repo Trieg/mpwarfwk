@@ -14,7 +14,7 @@ class Kernel
         Debug::enable();
     }
 
-    public function build()
+    public function boot()
     {
         $request = new Request();
         $response = $this->handle($request);
