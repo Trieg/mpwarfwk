@@ -1,15 +1,14 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Exception;
 
-use \InvalidArgumentExceptio;
+use InvalidArgumentExceptio;
 
 /**
  *
  */
 class RouteNotFoundException extends InvalidArgumentExceptio
 {
-
-    function __construct()
+    public function __construct()
     {
         # code...
     }

@@ -21,7 +21,7 @@ class Router
     /**
      * Add available routes.
      *
-     * @param string $uri [description]
+     * @param string $uri      [description]
      * @param string $defaults [description]
      */
     public function add($uri, $defaults)
@@ -31,11 +31,10 @@ class Router
 
     public function submit()
     {
-        if (!array_key_exists($request->getUri(), $this->uriList)) {
-            throw RouteNotFoundException();
+        if (!array_key_exists($this->request->getUri(), $this->uriList)) {
+            throw new RouteNotFoundException();
         }
 
-        return $this->uri[$request->getUri()];
+        return $this->uri[$this->request->getUri()];
     }
-
 }
