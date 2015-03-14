@@ -40,6 +40,5 @@ class Kernel
         $router->add('/test/{id}', 'TestController::show()');
         $router->add('/contact', 'ContactController()');
         $router->submit();
-        echo "string";
     }
 }
