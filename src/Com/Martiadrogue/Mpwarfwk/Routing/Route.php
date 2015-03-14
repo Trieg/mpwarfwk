@@ -6,8 +6,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Routing;
  */
 class Route
 {
-
-    function __construct()
+    public function __construct()
     {
         # code...
     }
