@@ -6,8 +6,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
  */
 class Response
 {
-
-    function __construct()
+    public function __construct()
     {
         # code...
     }
