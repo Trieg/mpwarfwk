@@ -26,7 +26,7 @@ class Router
      */
     public function add($uri, $defaults)
     {
-        $this->uri[$uri] = $defaults;
+        $this->uriList[$uri] = $defaults;
     }
 
     public function submit()
@@ -35,6 +35,6 @@ class Router
             throw new RouteNotFoundException();
         }
 
-        return $this->uri[$this->request->getUri()];
+        return $this->uriList[$this->request->getUri()];
     }
 }
