@@ -16,7 +16,7 @@ class Kernel
 
     public function boot()
     {
-        $request = new Request();
+        $request = Request::createFromGlobals();
         $response = $this->handle($request);
         $response->send();
     }
