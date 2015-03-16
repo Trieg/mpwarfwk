@@ -10,9 +10,8 @@ use Com\Martiadrogue\Mpwarfwk\Routing\Router;
  */
 class Bootstrap
 {
-    public function boot()
+    public function boot(Request $request)
     {
-        $request = Request::createFromGlobals();
         $response = $this->handle($request);
         $response->send();
     }
