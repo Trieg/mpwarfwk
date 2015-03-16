@@ -1,33 +1,42 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
 
+use Com\Martiadrogue\Mpwarfwk\Connection\Http\Session;
 /**
  *
  */
 class Request
 {
-    private $uri;
+    private $session;
+    private $cookies;
+    private $get;
+    private $post;
+    private $server;
+    private $files;
 
-    private function __construct($uri)
+    private function __construct(Session $session, $get, $post, $files, $cookies, $server)
     {
-        $this->uri = $uri;
+        $this->session = $session;
+        $this->get = $get;
+        $this->post = $post;
+        $this->files = $files;
+        $this->cookies = $cookies;
+        $this->server = $server;
     }
 
     public static function createFromGlobals()
     {
-        $request = new static($_SERVER['REQUEST_URI']);
-        $_SERVER["REQUEST_URI"] = [];
+        $session = new Session();
+        $request = new static($session, $_GET. $_POST, $_FILES, $_COOKIES, $_SERVER['SCRIPT_URL']);
+        $_GET = $_POST = $_FILES = $_COOKIES = $_SERVER = [];
 
         return $request;
     }
 
-    public function setUri($uri)
-    {
-        $this->uri = $uri;
-    }
+
 
     public function getUri()
     {
-        return $this->uri;
+        return $this->server['SCRIPT_URL'];
     }
 }
