@@ -27,8 +27,8 @@ class Request
     public static function createFromGlobals()
     {
         $session = new Session();
-        $request = new static($session, $_GET. $_POST, $_FILES, $_COOKIES, $_SERVER['SCRIPT_URL']);
-        $_GET = $_POST = $_FILES = $_COOKIES = $_SERVER = [];
+        $request = new static($session, $_GET, $_POST, $_FILES, $_COOKIE, $_SERVER);
+        $_GET = $_POST = $_FILES = $_COOKIE = $_SERVER = [];
 
         return $request;
     }
@@ -37,6 +37,6 @@ class Request
 
     public function getUri()
     {
-        return $this->server['SCRIPT_URL'];
+        return $this->server['REQUEST_URI'];
     }
 }
