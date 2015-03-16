@@ -1,7 +1,6 @@
 {
     "name": "martiadrogue/mpwarfwk",
     "description": "A MVC framework.",
-    "type": "library",
     "keywords": ["framework", "mvc"],
     "homepage": "https://github.com/martiadrogue/mpwarfwk",
     "license": "MIT",
@@ -17,7 +16,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-          "Com\\Martiadrogue\\Mpwarfwk\\": "src"
+          "Com\\Martiadrogue\\Mpwarfwk\\": "src/"
         }
     }
 
