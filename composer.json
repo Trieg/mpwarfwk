@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "twig/twig": "2.0.*@dev",
+        "twig/twig": "2.0.*@dev"
     },
     "minimum-stability": "dev",
     "autoload": {
