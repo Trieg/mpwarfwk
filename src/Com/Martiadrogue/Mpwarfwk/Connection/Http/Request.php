@@ -1,9 +1,6 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
 
-use Com\Martiadrogue\Mpwarfwk\Connection\Http\Session;
-use Com\Martiadrogue\Mpwarfwk\Connection\Http\Parameter;
-
 /**
  *
  */
@@ -34,8 +31,6 @@ class Request
 
         return $request;
     }
-
-
 
     public function getUri()
     {

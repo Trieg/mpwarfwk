@@ -6,7 +6,6 @@ namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
  */
 class Session
 {
-
     public function __construct()
     {
         session_start();
@@ -21,5 +20,4 @@ class Session
     {
         return $_SESSION[$key];
     }
-
 }
