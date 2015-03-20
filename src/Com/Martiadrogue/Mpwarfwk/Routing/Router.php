@@ -3,6 +3,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Routing;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 use Com\Martiadrogue\Mpwarfwk\Exception\RouteNotFoundException;
+use Com\Martiadrogue\Mpwarfwk\Routing\Parser\ParserFactory;
 
 /**
  * Llegir la URL i carregar i retornar la classe corresponent.
@@ -12,21 +13,10 @@ class Router
     private $uriList;
     private $request;
 
-    public function __construct($request)
+    public function __construct(Request $request)
     {
-        $this->uriList = [];
+        $this->mapRoutes();
         $this->request = $request;
-    }
-
-    /**
-     * Add available routes.
-     *
-     * @param string $uri      [description]
-     * @param string $defaults [description]
-     */
-    public function add($uri, $defaults)
-    {
-        $this->uriList[$uri] = $defaults;
     }
 
     public function submit()
@@ -36,5 +26,25 @@ class Router
         }
 
         return $this->uriList[$this->request->getUri()];
+    }
+
+    /**
+     * Add available routes.
+     *
+     * @param Route $route [description]
+     */
+    private function add(Route $route)
+    {
+        $this->uriList[$route->getPath()] = $route;
+    }
+
+    private function mapRoutes()
+    {
+        $parser = ParserFactory::create();
+        $routes = $parser->parse();
+        $this->uriList = [];
+        foreach ($routes as $route) {
+            $this->add($route);
+        }
     }
 }
