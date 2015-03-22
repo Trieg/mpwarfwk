@@ -21,10 +21,10 @@ class Router
 
     public function submit()
     {
-        if (!array_key_exists($this->request->getUri(), $this->uriList)) {
+        $uri = $this->request->getUri();
+        if (!array_key_exists($uri, $this->uriList)) {
             throw new RouteNotFoundException();
         }
-
         return $this->uriList[$this->request->getUri()];
     }
 

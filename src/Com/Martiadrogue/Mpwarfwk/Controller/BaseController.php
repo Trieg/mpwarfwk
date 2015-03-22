@@ -1,20 +1,18 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Controller;
 
-use Twig_Loader_Filesystem;
-use Twig_Environment;
 use Com\Martiadrogue\Mpwarfwk\Service\Database\PdoService;
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
 use PDOException;
 use ReflectionClass;
+use \BadMethodCallException;
 
 /**
  *
  */
 abstract class BaseController
 {
-    private $rootTemplate = '../view/';
-
+    private $response;
     public function __construct()
     {
         try {
@@ -39,42 +37,31 @@ abstract class BaseController
         # code...
     }
 
-    protected function setRootTemplate($path)
+    /**
+     * Execute an action on the controller.
+     *
+     * @param string $method     [description]
+     * @param Array $parameters [description]
+     *
+     * @return Com\Martíadrogue\Connection\Http\Response
+     */
+    public function callAction($method, Array $parameters)
     {
-        $this->rootTemplate = $path;
+        return call_user_func_array(array($this, $method), $parameters);
     }
 
     /**
-     * La ruta del template a de ser controller/action.html a no ser que la
-     * subclass digui el contrari.
+     * Handle calls to missing methods on the controller.
+     *
+     * @param  string  $method
+     * @param  array   $parameters
+     * @return mixed
+     *
+     * @throws \BadMethodCallException
      */
-    protected function render(Array $data = [])
+    public function __call($method, $parameters)
     {
-        $controller = $this->getControllerName();
-        $action = $this->getControllerAction();
-
-        $loader = new Twig_Loader_Filesystem($this->rootTemplate);
-        $twig = new Twig_Environment($loader);
-        $template = $twig->loadTemplate("$controller/$action.html");
-        $content = $template->render($data);
-
-        return new Response($content, 200);
+        throw new BadMethodCallException("Method [$method] does not exist.");
     }
 
-    private function getControllerName()
-    {
-        $className = get_class($this);
-        $function = new ReflectionClass($className);
-        $shortName = $function->getShortName();
-        $controller = str_replace('Controller', '', $shortName);
-
-        return strtolower($controller);
-    }
-
-    public function getControllerAction()
-    {
-        $callers = debug_backtrace();
-
-        return $callers[2]['function'];
-    }
 }
