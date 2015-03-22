@@ -6,7 +6,7 @@ use Com\Martiadrogue\Mpwarfwk\Connection\Responsible;
 /**
  *
  */
-class Response implements Responsible
+class HtmlResponse implements Responsible
 {
     private $content;
     private $status;
