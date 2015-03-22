@@ -20,35 +20,8 @@ class IniParser implements Parseable
 
     public function parse()
     {
-        $routes = [];
-        $data = parse_ini_file($this->file, true);
-        $package = '';
-        foreach ($data as $key => $value) {
-            if ($key === "package") {
-                $package = $this->readPackage($value);
-            } else {
-                $this->currentAlias = $key;
-                $this->readRoute($value);
-                $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults);
-            }
-        }
-
-        return $routes;
+        $this->data = parse_ini_file($this->file, true);
+        return parent::parse();
     }
 
-    private function readPackage($package)
-    {
-        return $package['package'];
-    }
-
-    private function readRoute($route)
-    {
-        foreach ($route as $key => $value) {
-            if ($key === "path") {
-                $this->currentPath = $value;
-            } elseif ($key === "defaults") {
-                $this->currentDefaults = $value;
-            }
-        }
-    }
 }
