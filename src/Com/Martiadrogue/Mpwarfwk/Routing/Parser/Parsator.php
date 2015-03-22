@@ -46,29 +46,11 @@ class Parsator implements Parseable
     {
         foreach ($route as $key => $value) {
             if ($key === "path") {
-                $value = $this->removeParameters($value);
                 $this->currentPath = $this->formatPath($value);
             } elseif ($key === "defaults") {
                 $this->currentDefaults = $value;
             }
         }
-    }
-
-    private function removeParameters($value)
-    {
-        $cleanPath = '';
-        $path = explode("/", $value);
-        foreach ($path as $value) {
-            $parameter = [];
-            preg_match('/\{[^\W]*\}/', $value, $parameter);
-            if (count($parameter)>0) {
-                $this->currentParameters[] = $parameter[0];
-            } else {
-                $cleanPath .= $value . '/';
-            }
-        }
-
-        return $cleanPath;
     }
 
     private function formatPath($value)
