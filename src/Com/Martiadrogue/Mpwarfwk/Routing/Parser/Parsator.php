@@ -59,7 +59,7 @@ class Parsator implements Parseable
         if ($value[$last] === '/') {
             return $value;
         }
+
         return $value.'/';
     }
-
 }

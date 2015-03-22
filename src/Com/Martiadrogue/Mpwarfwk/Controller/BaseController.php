@@ -4,8 +4,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Controller;
 use Com\Martiadrogue\Mpwarfwk\Service\Database\PdoService;
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
 use PDOException;
-use ReflectionClass;
-use \BadMethodCallException;
+use BadMethodCallException;
 
 /**
  *
@@ -16,7 +15,7 @@ abstract class BaseController
     public function __construct()
     {
         try {
-            // $pdo = new PdoService();
+            $pdo = new PdoService();
             // $pdo->create('article', 'lorem ipsum', 'author', '10/22/2015','lorem ipsum dolor sit amen', ' Vivamus pellentesque ligula justo, sed mollis odio venenatis vel. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque bibendum enim a dui eleifend molestie. Curabitur eu nisi at orci auctor ultrices at nec sapien. Vestibulum aliquam mi arcu, quis suscipit est posuere vitae. Praesent orci metus, tristique eget libero et, fringilla pulvinar lacus. Phasellus non volutpat leo.');
             // $pdo->read('article', 'title', 'author', 'date', 'brief', 'body');
             // $pdo->update('article', '1', 'lorem ipsum', 'author', '10/22/2015','lorem ipsum dolor sit amen', ' Vivamus pellentesque ligula justo, sed mollis odio venenatis vel. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque bibendum enim a dui eleifend molestie. Curabitur eu nisi at orci auctor ultrices at nec sapien. Vestibulum aliquam mi arcu, quis suscipit est posuere vitae. Praesent orci metus, tristique eget libero et, fringilla pulvinar lacus. Phasellus non volutpat leo.');
@@ -41,7 +40,7 @@ abstract class BaseController
      * Execute an action on the controller.
      *
      * @param string $method     [description]
-     * @param Array $parameters [description]
+     * @param Array  $parameters [description]
      *
      * @return Com\Martíadrogue\Connection\Http\Response
      */
@@ -53,8 +52,9 @@ abstract class BaseController
     /**
      * Handle calls to missing methods on the controller.
      *
-     * @param  string  $method
-     * @param  array   $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return mixed
      *
      * @throws \BadMethodCallException
@@ -63,5 +63,4 @@ abstract class BaseController
     {
         throw new BadMethodCallException("Method [$method] does not exist.");
     }
-
 }

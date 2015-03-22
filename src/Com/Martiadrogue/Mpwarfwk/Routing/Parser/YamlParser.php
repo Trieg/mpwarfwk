@@ -8,7 +8,6 @@ use Symfony\Component\Yaml\Parser;
  */
 class YamlParser extends Parsator
 {
-
     public function __construct($file)
     {
         $this->file = $file;

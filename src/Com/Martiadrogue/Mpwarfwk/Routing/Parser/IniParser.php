@@ -1,7 +1,6 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
 
-use Com\Martiadrogue\Mpwarfwk\Routing\Route;
 
 /**
  *
@@ -21,7 +20,7 @@ class IniParser implements Parseable
     public function parse()
     {
         $this->data = parse_ini_file($this->file, true);
+
         return parent::parse();
     }
-
 }

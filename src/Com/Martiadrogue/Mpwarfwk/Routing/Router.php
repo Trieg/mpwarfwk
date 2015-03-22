@@ -25,6 +25,7 @@ class Router
         if (!array_key_exists($uri, $this->uriList)) {
             throw new RouteNotFoundException();
         }
+
         return $this->uriList[$this->request->getUri()];
     }
 

@@ -2,10 +2,9 @@
 namespace Com\Martiadrogue\Mpwarfwk\Service\Database\Orm;
 
 use PDO;
-use Com\Martiadrogue\Mpwarfwk\Service\Database\DatabaseAdaptable;
 
 /**
- * http://www.devshed.com/c/a/mysql/building-an-orm-in-php/
+ * http://www.devshed.com/c/a/mysql/building-an-orm-in-php/.
  */
 class PdoService extends PDO
 {
@@ -47,7 +46,7 @@ class PdoService extends PDO
     /**
      * http://stackoverflow.com/questions/13545170/pdo-insert-array-using-key-as-column-name.
      *
-     * @param [type] $table   [description]
+     * @param [type] $table  [description]
      * @param [type] $fields [description]
      *
      * @return [type] [description]

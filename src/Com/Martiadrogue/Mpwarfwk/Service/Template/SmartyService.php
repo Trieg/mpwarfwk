@@ -1,7 +1,6 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Service\Template;
 
-use Com\Martiadrogue\Mpwarfwk\Service\Templeable;
 use Smarty;
 
 /**
@@ -13,7 +12,8 @@ class SmartyService implements Templatable
     private $cacheHome;
     private $template;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->templateHome = '../view';
         $this->cacheHome = '../cache/smarty';
     }
@@ -39,8 +39,7 @@ class SmartyService implements Templatable
         $smarty->setTemplateDir($this->templateHome);
         $smarty->setCacheDir($this->cacheHome);
         $smarty->assign('data', $data);
+
         return $smarty->display($this->template);
     }
-
-
 }

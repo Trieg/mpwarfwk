@@ -57,7 +57,6 @@ class JsonResponse implements Responsible
         echo $this->content;
     }
 
-
     private function isContent($data)
     {
         $isString = is_string($data);
