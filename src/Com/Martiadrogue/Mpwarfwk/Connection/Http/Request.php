@@ -34,6 +34,11 @@ class Request
 
     public function getUri()
     {
-        return $this->server->getItem('REQUEST_URI');
+        $last = strlen($this->server->getItem('REQUEST_URI')) - 1;
+        if ($this->server->getItem('REQUEST_URI')[$last] === '/') {
+            return $this->server->getItem('REQUEST_URI');
+        }
+
+        return $this->server->getItem('REQUEST_URI').'/';
     }
 }

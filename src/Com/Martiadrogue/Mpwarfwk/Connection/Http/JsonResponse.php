@@ -1,10 +1,12 @@
 <?php
-namespace Com\Martiadrogue\Mpwarfwk\Connection\Json;
+namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
+
+use Com\Martiadrogue\Mpwarfwk\Connection\Responsible;
 
 /**
  *
  */
-class Response implements Responsible
+class JsonResponse implements Responsible
 {
     private $content;
     private $status;
@@ -17,16 +19,8 @@ class Response implements Responsible
 
     public function send()
     {
-        mb_http_output('UTF-8');
-
-        if ($this->status !== 200) {
-            header('HTTP/1.0 404 Not Found; charset=UTF-8');
-        } else {
-            header('Content-Type: application/json; charset=UTF-8');
-        }
         $this->sendHeaders();
         $this->sendContent();
-        fastcgi_finish_request();
     }
 
     public function getContent()
@@ -47,6 +41,22 @@ class Response implements Responsible
 
         $this->content = $data;
     }
+
+    private function sendHeaders()
+    {
+        mb_http_output('UTF-8');
+        if ($this->status !== 200) {
+            header('HTTP/1.0 404 Not Found; charset=UTF-8');
+        } else {
+            header('Content-Type: application/json; charset=UTF-8');
+        }
+    }
+
+    private function sendContent()
+    {
+        echo $this->content;
+    }
+
 
     private function isContent($data)
     {
