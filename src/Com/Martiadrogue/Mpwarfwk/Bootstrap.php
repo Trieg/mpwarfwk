@@ -5,7 +5,8 @@ use Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 use Com\Martiadrogue\Mpwarfwk\Routing\Router;
 use Com\Martiadrogue\Mpwarfwk\Routing\Route;
-use ReflectionMethod;
+use Com\Martiadrogue\Mpwarfwk\Controller\ControllerDispatcher;
+use \ReflectionMethod;
 
 /**
  *
@@ -37,9 +38,10 @@ class Bootstrap
     {
         $class = $route->getControllerClass();
         $action = $route->getControllerAction();
+        $parameters = $route->getActionParameters();
 
-        $reflection = new ReflectionMethod($class, $action);
+        $dispatcher = new ControllerDispatcher();
 
-        return $reflection->invoke(new $class());
+        return $dispatcher->dispatch($class, $action, $parameters);
     }
 }

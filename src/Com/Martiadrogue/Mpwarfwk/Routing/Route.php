@@ -9,12 +9,14 @@ class Route
     private $alias;
     private $path;
     private $defaults;
+    private $parameters;
 
-    public function __construct($alias, $path, $defaults)
+    public function __construct($alias, $path, $defaults, $parameters)
     {
         $this->alias = $alias;
         $this->path = $path;
         $this->defaults = $defaults;
+        $this->parameters = $parameters;
     }
 
     public function getPath()
@@ -36,9 +38,14 @@ class Route
     {
         $actionDelimiter = strpos($this->defaults, '::');
         if ($actionDelimiter) {
-            return substr($this->defaults, $actionDelimiter + 2);
+            return 'execute'.substr($this->defaults, $actionDelimiter + 2);
         }
 
-        return 'index';
+        return 'executeIndex';
+    }
+
+    public function getActionParameters()
+    {
+        return [];
     }
 }
