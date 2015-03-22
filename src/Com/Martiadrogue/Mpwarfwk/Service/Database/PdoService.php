@@ -1,10 +1,11 @@
 <?php
-namespace Com\Martiadrogue\Mpwarfwk\Service\Database;
+namespace Com\Martiadrogue\Mpwarfwk\Service\Database\Orm;
 
 use PDO;
+use Com\Martiadrogue\Mpwarfwk\Service\Database\DatabaseAdaptable;
 
 /**
- *
+ * http://www.devshed.com/c/a/mysql/building-an-orm-in-php/
  */
 class PdoService extends PDO
 {
@@ -47,14 +48,22 @@ class PdoService extends PDO
      * http://stackoverflow.com/questions/13545170/pdo-insert-array-using-key-as-column-name.
      *
      * @param [type] $table   [description]
-     * @param [type] $columns [description]
+     * @param [type] $fields [description]
      *
      * @return [type] [description]
      */
-    public function read($table, ...$columns)
+    public function read($table, ...$fields)
     {
-        $column_list = implode(',', $columns);
-        $stmt = $this->pdo->query("SELECT $column_list FROM $table LIMIT 100");
+        $fields_list = implode(',', $fields);
+        $stmt = $this->pdo->query("SELECT $fields_list FROM $table LIMIT 100");
+
+        return $stmt->fetchAll();
+    }
+
+    public function readById($table, $id, ...$fields)
+    {
+        $fields_list = implode(',', $fields);
+        $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE ID = $id LIMIT 100");
 
         return $stmt->fetchAll();
     }
