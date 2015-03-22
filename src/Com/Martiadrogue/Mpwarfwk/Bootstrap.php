@@ -6,7 +6,6 @@ use Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 use Com\Martiadrogue\Mpwarfwk\Routing\Router;
 use Com\Martiadrogue\Mpwarfwk\Routing\Route;
 use Com\Martiadrogue\Mpwarfwk\Controller\ControllerDispatcher;
-use \ReflectionMethod;
 
 /**
  *

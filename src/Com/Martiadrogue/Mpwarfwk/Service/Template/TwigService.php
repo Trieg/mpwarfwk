@@ -1,7 +1,6 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Service\Template;
 
-use Com\Martiadrogue\Mpwarfwk\Service\Templeable;
 use Twig_Loader_Filesystem;
 use Twig_Environment;
 
@@ -14,7 +13,8 @@ class TwigService implements Templatable
     private $cacheHome;
     private $template;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->templateHome = '../view';
         $this->cacheHome = '../cache/twig';
     }
@@ -39,8 +39,7 @@ class TwigService implements Templatable
         $loader = new Twig_Loader_Filesystem($this->templateHome);
         $twig = new Twig_Environment($loader, ['cache' => $this->cacheHome]);
         $template = $twig->loadTemplate($this->template);
+
         return $template->render($data);
     }
-
-
 }

@@ -1,7 +1,6 @@
 <?php
 namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
 
-use Com\Martiadrogue\Mpwarfwk\Routing\Route;
 
 /**
  *
@@ -25,5 +24,4 @@ class JsonParser implements Parseable
 
         return parent::parse();
     }
-
 }
