@@ -1,4 +1,5 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk\Service\Template;
 
 use Twig_Loader_Filesystem;

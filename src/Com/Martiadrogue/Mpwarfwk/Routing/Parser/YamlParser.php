@@ -1,4 +1,5 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
 
 use Symfony\Component\Yaml\Parser;

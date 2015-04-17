@@ -1,4 +1,5 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\Responsible;

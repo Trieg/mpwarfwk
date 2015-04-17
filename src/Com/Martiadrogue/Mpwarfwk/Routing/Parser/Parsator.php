@@ -1,4 +1,5 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
 
 use Com\Martiadrogue\Mpwarfwk\Routing\Route;
@@ -24,7 +25,7 @@ class Parsator implements Parseable
         $package = '';
         $routes = [];
         foreach ($this->data as $key => $value) {
-            if ($key === "package") {
+            if ($key === 'package') {
                 $package = $this->readPackage($value);
             } else {
                 $this->currentAlias = $key;
@@ -45,9 +46,9 @@ class Parsator implements Parseable
     private function readRoute($route)
     {
         foreach ($route as $key => $value) {
-            if ($key === "path") {
+            if ($key === 'path') {
                 $this->currentPath = $this->formatPath($value);
-            } elseif ($key === "defaults") {
+            } elseif ($key === 'defaults') {
                 $this->currentDefaults = $value;
             }
         }

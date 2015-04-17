@@ -1,4 +1,5 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk\Exception;
 
 use RuntimeException;

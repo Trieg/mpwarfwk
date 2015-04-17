@@ -1,4 +1,5 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
