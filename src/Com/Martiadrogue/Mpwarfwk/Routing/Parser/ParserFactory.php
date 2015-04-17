@@ -1,4 +1,5 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
 
 /**
@@ -6,7 +7,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
  */
 class ParserFactory
 {
-    const PATTERN = "../config/{routing.yml,routing.json,routing.ini}";
+    const PATTERN = '../config/{routing.yml,routing.json,routing.ini}';
 
     public static function create()
     {

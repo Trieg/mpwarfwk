@@ -1,8 +1,7 @@
 <?php
+
 namespace Com\Martiadrogue\Mpwarfwk\Controller;
 
-use Com\Martiadrogue\Mpwarfwk\Service\Database\PdoService;
-use Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
 use BadMethodCallException;
 
 /**
