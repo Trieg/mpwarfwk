@@ -5,7 +5,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Parser;
 /**
  *
  */
-class ParserFactory
+class RouteParserFactory
 {
     const PATTERN = '../config/{routing.yml,routing.json,routing.ini}';
 
