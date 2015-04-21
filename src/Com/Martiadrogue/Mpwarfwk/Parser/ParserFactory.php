@@ -11,7 +11,11 @@ class ParserFactory
 
     public static function create()
     {
-        $extensionMap = ['json' => 'JsonParser', 'ini' => 'IniParser', 'yml' => 'YamlParser'];
+        $extensionMap = [
+            'json' => 'JsonParser',
+            'ini' => 'IniParser',
+            'yml' => 'YamlParser'
+        ];
         foreach (glob(self::PATTERN, GLOB_BRACE) as $filename) {
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
             if (!array_key_exists($extension, $extensionMap)) {
