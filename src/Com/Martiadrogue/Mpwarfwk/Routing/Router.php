@@ -4,7 +4,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Routing;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 use Com\Martiadrogue\Mpwarfwk\Exception\RouteNotFoundException;
-use Com\Martiadrogue\Mpwarfwk\Routing\Parser\ParserFactory;
+use Com\Martiadrogue\Mpwarfwk\Parser\ParserFactory;
 
 /**
  * Llegir la URL i carregar i retornar la classe corresponent.

@@ -1,11 +1,11 @@
 <?php
 
-namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
+namespace Com\Martiadrogue\Mpwarfwk\Parser;
 
 /**
  *
  */
-class IniParser implements Parseable
+class JsonParser implements Parseable
 {
     private $file;
     private $currentAlias;
@@ -19,7 +19,8 @@ class IniParser implements Parseable
 
     public function parse()
     {
-        $this->data = parse_ini_file($this->file, true);
+        $input = file_get_contents($this->file);
+        $this->data = json_decode($input, true);
 
         return parent::parse();
     }
