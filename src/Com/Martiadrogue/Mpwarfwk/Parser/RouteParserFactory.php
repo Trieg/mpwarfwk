@@ -14,7 +14,7 @@ class RouteParserFactory
         $extensionMap = [
             'json' => 'JsonParser',
             'ini' => 'IniParser',
-            'yml' => 'YamlParser'
+            'yml' => 'YamlParser',
         ];
         foreach (glob(self::PATTERN, GLOB_BRACE) as $filename) {
             $extension = pathinfo($filename, PATHINFO_EXTENSION);

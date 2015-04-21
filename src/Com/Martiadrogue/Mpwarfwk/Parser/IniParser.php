@@ -7,7 +7,6 @@ namespace Com\Martiadrogue\Mpwarfwk\Parser;
  */
 class IniParser extends Parsator
 {
-
     public function __construct($file)
     {
         $this->file = $file;
