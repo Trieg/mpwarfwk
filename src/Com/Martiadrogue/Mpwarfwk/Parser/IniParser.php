@@ -1,16 +1,12 @@
 <?php
 
-namespace Com\Martiadrogue\Mpwarfwk\Routing\Parser;
+namespace Com\Martiadrogue\Mpwarfwk\Parser;
 
 /**
  *
  */
-class IniParser implements Parseable
+class IniParser extends Parsator
 {
-    private $file;
-    private $currentAlias;
-    private $currentPath;
-    private $currentDefaults;
 
     public function __construct($file)
     {
