@@ -5,12 +5,8 @@ namespace Com\Martiadrogue\Mpwarfwk\Parser;
 /**
  *
  */
-class JsonParser implements Parseable
+class JsonParser extends Parsator
 {
-    private $file;
-    private $currentAlias;
-    private $currentPath;
-    private $currentDefaults;
 
     public function __construct($file)
     {
