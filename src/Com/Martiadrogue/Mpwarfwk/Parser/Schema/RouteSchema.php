@@ -1,37 +1,35 @@
 <?php
 
-namespace Com\Martiadrogue\Mpwarfwk\Parser;
+namespace Com\Martiadrogue\Mpwarfwk\Parser\Schema;
 
 use Com\Martiadrogue\Mpwarfwk\Routing\Route;
 
-/**
- *
- */
-class Parsator implements Parseable
+class RouteSchema implements Schemable
 {
-    protected $file;
-    protected $data;
-    protected $currentAlias;
-    protected $currentPath;
-    protected $currentParameters = [];
+    private $currentAlias;
+    private $currentPath;
+    private $currentDefaults;
+    private $currentParameters;
 
     public function __construct()
     {
-        # code...
+        $this->currentAlias = '';
+        $this->currentPath = '';
+        $this->currentDefaults = '';
+        $this->currentParameters = [];
     }
 
-    public function parse()
+    public function cast(array $data)
     {
         $package = '';
         $routes = [];
-        foreach ($this->data as $key => $value) {
+        foreach ($data as $key => $value) {
             if ($key === 'package') {
                 $package = $this->readPackage($value);
             } else {
                 $this->currentAlias = $key;
                 $this->readRoute($value);
                 $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults, $this->currentParameters);
-                $this->currentParameters = [];
             }
         }
 
