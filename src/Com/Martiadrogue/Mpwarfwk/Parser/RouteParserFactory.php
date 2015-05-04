@@ -2,30 +2,17 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Parser;
 
-/**
- *
- */
+use Com\Martiadrogue\Mpwarfwk\Parser\Schema\RouteSchema;
+
 class RouteParserFactory
 {
-    const PATTERN = '../config/{routing.yml,routing.json,routing.ini}';
+    const PATTERN_ROUTES = '../config/{routing.yml,routing.json,routing.ini}';
 
     public static function create()
     {
-        $extensionMap = [
-            'json' => 'JsonParser',
-            'ini' => 'IniParser',
-            'yml' => 'YamlParser'
-        ];
-        foreach (glob(self::PATTERN, GLOB_BRACE) as $filename) {
-            $extension = pathinfo($filename, PATHINFO_EXTENSION);
-            if (!array_key_exists($extension, $extensionMap)) {
-                continue;
-            }
-            $class = __NAMESPACE__."\\{$extensionMap[$extension]}";
+        $schema = new RouteSchema();
+        $parser = new ParserFactory(self::PATTERN_ROUTES, $schema);
 
-            return new $class($filename);
-        }
-
-        return;
+        return $parser->create();
     }
 }
