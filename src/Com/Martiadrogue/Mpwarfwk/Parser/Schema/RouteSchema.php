@@ -26,11 +26,11 @@ class RouteSchema implements Schemable
         foreach ($data as $key => $value) {
             if ($key === 'package') {
                 $package = $this->readPackage($value);
-            } else {
-                $this->currentAlias = $key;
-                $this->readRoute($value);
-                $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults, $this->currentParameters);
+                continue;
             }
+            $this->currentAlias = $key;
+            $this->readRoute($value);
+            $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults, $this->currentParameters);
         }
 
         return $routes;
