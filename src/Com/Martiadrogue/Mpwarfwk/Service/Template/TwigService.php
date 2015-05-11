@@ -17,7 +17,7 @@ class TwigService implements Templatable
     public function __construct()
     {
         $this->templateHome = '../view';
-        $this->cacheHome = '../cache/twig';
+        $this->cacheHome = '../cache/template';
     }
 
     public function setTemplateHome($path)
@@ -38,7 +38,10 @@ class TwigService implements Templatable
     public function paint(Array $data)
     {
         $loader = new Twig_Loader_Filesystem($this->templateHome);
-        $twig = new Twig_Environment($loader, ['cache' => $this->cacheHome]);
+        $twig = new Twig_Environment($loader, [
+                'cache' => $this->cacheHome,
+                'auto_reload' => true
+            ]);
         $template = $twig->loadTemplate($this->template);
 
         return $template->render($data);
