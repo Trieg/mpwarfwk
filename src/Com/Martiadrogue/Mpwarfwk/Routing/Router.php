@@ -5,6 +5,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Routing;
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 use Com\Martiadrogue\Mpwarfwk\Exception\RouteNotFoundException;
 use Com\Martiadrogue\Mpwarfwk\Parser\RouteParserFactory;
+use Com\Martiadrogue\Mpwarfwk\Routing\RouteFinder;
 
 /**
  * Llegir la URL i carregar i retornar la classe corresponent.
@@ -20,10 +21,16 @@ class Router
         $this->request = $request;
     }
 
+    /**
+     * comparar la uri amb cada ruta de l'array
+     */
     public function submit()
     {
         $uri = $this->request->getUri();
-        if (!array_key_exists($uri, $this->uriList)) {
+
+        $matches = array_filter($this->uriList, array(new RouteFinder($uri), 'isUriEqualTo'));
+
+        if (!count($matches)) {
             throw new RouteNotFoundException();
         }
 

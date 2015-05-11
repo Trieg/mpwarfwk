@@ -49,4 +49,9 @@ class Route
     {
         return [];
     }
+
+    public static function compareRouteTo(Route $route, $uri)
+    {
+        # code...
+    }
 }
