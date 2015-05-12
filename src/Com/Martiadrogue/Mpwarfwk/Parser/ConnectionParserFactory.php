@@ -6,12 +6,12 @@ use Com\Martiadrogue\Mpwarfwk\Parser\Schema\ConnectionSchema;
 
 class ConnectionParserFactory
 {
-    const PATTERN_ROUTES = '../config/{connection.yaml,connection.yml,connection.json,connection.ini}';
+    const PATTERN_CONNECTIONS = '../config/{connection.yaml,connection.yml,connection.json,connection.ini}';
 
     public static function create()
     {
         $schema = new ConnectionSchema();
-        $parser = new ParserFactory(self::PATTERN_ROUTES, $schema);
+        $parser = new ParserFactory(self::PATTERN_CONNECTIONS, $schema);
 
         return $parser->create();
     }

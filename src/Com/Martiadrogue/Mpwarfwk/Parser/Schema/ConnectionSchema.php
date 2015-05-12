@@ -8,5 +8,4 @@ class ConnectionSchema implements Schemable
     {
         return $data;
     }
-
 }
