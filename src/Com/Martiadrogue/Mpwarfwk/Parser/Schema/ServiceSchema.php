@@ -8,6 +8,7 @@ class ServiceSchema implements Schemable
 {
     private $currentClass;
     private $currentParameters;
+    private $services;
 
     public function __construct()
     {
@@ -16,13 +17,13 @@ class ServiceSchema implements Schemable
     }
     public function cast(array $data)
     {
-        $services = [];
-        foreach ($data as $value) {
+        $this->services = [];
+        foreach ($data as $key => $value) {
             $this->readService($value);
-            $services[] = new $this->currentClass($this->currentParameters);
+            $this->services[$key] = new $this->currentClass($this->currentParameters);
         }
 
-        return $services;
+        return $this->services;
     }
 
     private function readService($service)
@@ -31,8 +32,18 @@ class ServiceSchema implements Schemable
             if ($key === 'class') {
                 $this->currentClass = $value;
             } elseif ($key === 'arguments') {
-                $this->currentParameters = $value;
+                $class = $this->getDependency($value);
+                $this->currentParameters[] = new $class();
             }
         }
+    }
+
+    private function getDependency($value)
+    {
+        if (array_key_exists($value, $this->services)) {
+            return $this->services[$value];
+        }
+
+        return $value;
     }
 }
