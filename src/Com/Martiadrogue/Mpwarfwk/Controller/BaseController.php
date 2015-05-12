@@ -20,7 +20,7 @@ abstract class BaseController
         # code...
     }
 
-    protected function getServices($name)
+    protected function getService($name)
     {
         return $this->services[$name];
     }
