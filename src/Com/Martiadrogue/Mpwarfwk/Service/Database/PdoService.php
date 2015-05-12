@@ -1,13 +1,14 @@
 <?php
 
-namespace Com\Martiadrogue\Mpwarfwk\Service\Database\Orm;
+namespace Com\Martiadrogue\Mpwarfwk\Service\Database;
 
 use PDO;
+use Com\Martiadrogue\Mpwarfwk\Service\BaseService;
 
 /**
  * http://www.devshed.com/c/a/mysql/building-an-orm-in-php/.
  */
-class PdoService extends PDO
+class PdoService extends BaseService
 {
     private $driver;
     private $host;
@@ -26,9 +27,9 @@ class PdoService extends PDO
     {
         $config = ['driver' => 'mysql',
                     'host' => 'localhost',
-                    'dbname' => 'frameworkdb',
+                    'dbname' => 'provinciesdb',
                     'charset' => 'utf8',
-                    'username' => 'frameworkdb_root',
+                    'username' => 'provinciesdb_root',
                     'password' => '12345',];
         $this->setUpDatabase($config);
         $this->connect();

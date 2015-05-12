@@ -20,7 +20,7 @@ class RouteFinder
         for ($i=0; $i < count($uriElements); $i++) {
             if ($uriElements[$i] === $routeElements[$i]) {
                 continue;
-            } else if ($routeElements[$i] === ':param') {
+            } else if ($routeElements[$i] === ':arg') {
                 continue;
             }
             $check = false;

@@ -10,6 +10,7 @@ use BadMethodCallException;
 abstract class BaseController
 {
     private $response;
+    private $services = [];
 
     /**
      * MainAction.
@@ -18,6 +19,17 @@ abstract class BaseController
     {
         # code...
     }
+
+    protected function getServices($name)
+    {
+        return $this->services[$name];
+    }
+
+    public function setServices(array $services)
+    {
+        $this->services = $services;
+    }
+
 
     /**
      * Execute an action on the controller.
