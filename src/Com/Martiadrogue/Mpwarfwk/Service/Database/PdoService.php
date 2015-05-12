@@ -4,6 +4,8 @@ namespace Com\Martiadrogue\Mpwarfwk\Service\Database;
 
 use PDO;
 use Com\Martiadrogue\Mpwarfwk\Service\BaseService;
+use Com\Martiadrogue\Mpwarfwk\Parser\ConnectionParserFactory;
+use Com\Martiadrogue\Mpwarfwk\Parser\RouteParserFactory;
 
 /**
  * http://www.devshed.com/c/a/mysql/building-an-orm-in-php/.
@@ -23,14 +25,12 @@ class PdoService extends BaseService
      *
      * http://stackoverflow.com/questions/8992795/set-pdo-to-throw-exceptions-by-default.
      */
-    public function __construct()
+    public function __construct(array $params)
     {
-        $config = ['driver' => 'mysql',
-                    'host' => 'localhost',
-                    'dbname' => 'provinciesdb',
-                    'charset' => 'utf8',
-                    'username' => 'provinciesdb_root',
-                    'password' => '12345',];
+        $connectionParser = $params[0];
+        $parser = $connectionParser::create();
+        $config = $parser->parse();
+
         $this->setUpDatabase($config);
         $this->connect();
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
