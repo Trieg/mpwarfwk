@@ -35,6 +35,7 @@ class Router
         }
         $route =  array_shift($matches);
         $route->fillArgs($uri);
+
         return $route;
     }
 
