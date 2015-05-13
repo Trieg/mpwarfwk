@@ -15,6 +15,7 @@ class ControllerDispatcher
     {
         $controller = $this->makeController($namespace);
         $controller = $this->injectDependencies($controller);
+
         return $this->call($controller, $action, $parameters);
     }
 
