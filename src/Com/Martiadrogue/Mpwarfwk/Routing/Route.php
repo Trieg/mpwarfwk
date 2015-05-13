@@ -20,6 +20,18 @@ class Route
         $this->parameters = $parameters;
     }
 
+    public function fillArgs($uri)
+    {
+        $uriExploded = explode('/', $uri);
+        $pathExploded = explode('/', $this->path);
+
+        for ($i=0; $i < count($pathExploded); $i++) {
+            if ($pathExploded[$i] === ':arg') {
+                $this->parameters[] = $uriExploded[$i];
+            }
+        }
+    }
+
     public function getPath()
     {
         return $this->path;
@@ -47,11 +59,6 @@ class Route
 
     public function getActionParameters()
     {
-        return [];
-    }
-
-    public static function compareRouteTo(Route $route, $uri)
-    {
-        # code...
+        return $this->parameters;
     }
 }

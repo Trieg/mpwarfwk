@@ -33,8 +33,9 @@ class Router
         if (!count($matches)) {
             throw new RouteNotFoundException();
         }
-
-        return $this->uriList[$this->request->getUri()];
+        $route =  array_shift($matches);
+        $route->fillArgs($uri);
+        return $route;
     }
 
     /**
