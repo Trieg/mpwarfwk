@@ -61,10 +61,10 @@ class PdoService extends BaseService
         return $stmt->fetchAll();
     }
 
-    public function readById($table, $id, ...$fields)
+    public function readByField($table, $field, $value, ...$fields)
     {
         $fields_list = implode(',', $fields);
-        $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE ID = $id LIMIT 100");
+        $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE $field = $value LIMIT 100");
 
         return $stmt->fetchAll();
     }
