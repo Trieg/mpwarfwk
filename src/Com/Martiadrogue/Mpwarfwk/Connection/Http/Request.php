@@ -2,10 +2,12 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
 
+use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
+
 /**
  *
  */
-class Request
+class Request extends BaseRequest
 {
     private $session;
     private $cookies;
@@ -41,5 +43,10 @@ class Request
         }
 
         return $this->server->getItem('REQUEST_URI').'/';
+    }
+
+    public function getHttpHost()
+    {
+        return $this->server->getItem('HTTP_HOST');
     }
 }

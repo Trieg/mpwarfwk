@@ -5,12 +5,19 @@ namespace Com\Martiadrogue\Mpwarfwk\Controller;
 use ReflectionClass;
 use BindingResolutionException;
 use Com\Martiadrogue\Mpwarfwk\Parser\ServiceParserFactory;
+use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
 
 /**
  *
  */
 class ControllerDispatcher
 {
+    private $request;
+
+    public function __construct(BaseRequest $request) {
+        $this->request = $request;
+    }
+
     public function dispatch($namespace, $action, Array $parameters)
     {
         $controller = $this->makeController($namespace);
@@ -33,6 +40,7 @@ class ControllerDispatcher
     {
         $parser = ServiceParserFactory::create();
         $services = $parser->parse();
+        $services['request'] = $this->request;
         $controller->setServices($services);
 
         return $controller;

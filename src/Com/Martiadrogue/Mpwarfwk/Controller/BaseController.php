@@ -3,6 +3,7 @@
 namespace Com\Martiadrogue\Mpwarfwk\Controller;
 
 use BadMethodCallException;
+use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
 
 /**
  *
@@ -18,6 +19,11 @@ abstract class BaseController
     public function index()
     {
         # code...
+    }
+
+    protected function getRequest()
+    {
+        return $this->services['request'];
     }
 
     protected function getService($name)
