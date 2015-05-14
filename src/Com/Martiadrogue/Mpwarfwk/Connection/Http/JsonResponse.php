@@ -37,7 +37,7 @@ class JsonResponse implements Responsible
     private function setContent($data)
     {
         if (!$this->isContent($data)) {
-            throw new \UnexpectedValueException(sprintf('The Response content must be a string or object implementing __toString(), "%s" given.', gettype($content)));
+            throw new \UnexpectedValueException(sprintf('The Response content must be a string or object implementing __toString(), "%s" given.', gettype($data)));
         }
 
         $this->content = $data;
@@ -48,9 +48,10 @@ class JsonResponse implements Responsible
         mb_http_output('UTF-8');
         if ($this->status !== 200) {
             header('HTTP/1.0 404 Not Found; charset=UTF-8');
-        } else {
-            header('Content-Type: application/json; charset=UTF-8');
+
+            return;
         }
+        header('Content-Type: application/json; charset=UTF-8');
     }
 
     private function sendContent()

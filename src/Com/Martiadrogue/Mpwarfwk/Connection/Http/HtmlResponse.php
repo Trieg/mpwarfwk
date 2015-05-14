@@ -45,11 +45,13 @@ class HtmlResponse implements Responsible
         mb_http_output('UTF-8');
         if ($this->status !== 200) {
             header('HTTP/1.0 404 Not Found; charset=UTF-8');
-        } else {
-            $cache_max_age = 60*60*12;
-            header('Cache-Control: public, must-revalidate, max-age=0, s-maxage='.$cache_max_age);
-            header('Content-Type: text/html; charset=UTF-8');
+
+            return;
         }
+
+        $cacheMaxAge = 60 * 60 * 12;
+        header('Cache-Control: public, must-revalidate, max-age=0, s-maxage='.$cacheMaxAge);
+        header('Content-Type: text/html; charset=UTF-8');
     }
 
     private function sendContent()
@@ -80,9 +82,11 @@ class HtmlResponse implements Responsible
         ) {
             if ($flush) {
                 ob_end_flush();
-            } else {
-                ob_end_clean();
+
+                return;
             }
+
+            ob_end_clean();
         }
     }
 }

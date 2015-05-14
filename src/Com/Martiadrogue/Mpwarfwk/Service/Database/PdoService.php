@@ -4,8 +4,6 @@ namespace Com\Martiadrogue\Mpwarfwk\Service\Database;
 
 use PDO;
 use Com\Martiadrogue\Mpwarfwk\Service\BaseService;
-use Com\Martiadrogue\Mpwarfwk\Parser\ConnectionParserFactory;
-use Com\Martiadrogue\Mpwarfwk\Parser\RouteParserFactory;
 
 /**
  * http://www.devshed.com/c/a/mysql/building-an-orm-in-php/.

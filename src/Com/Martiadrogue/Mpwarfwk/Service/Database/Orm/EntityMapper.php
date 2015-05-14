@@ -59,5 +59,4 @@ class EntityMapper extends Mapper
 
         return $values;
     }
-
 }

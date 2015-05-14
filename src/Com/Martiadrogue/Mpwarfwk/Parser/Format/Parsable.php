@@ -2,6 +2,7 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Parser\Format;
 
-interface Parsable {
+interface Parsable
+{
     public function parse();
 }

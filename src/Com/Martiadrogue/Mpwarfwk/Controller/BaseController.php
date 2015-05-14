@@ -3,7 +3,6 @@
 namespace Com\Martiadrogue\Mpwarfwk\Controller;
 
 use BadMethodCallException;
-use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
 
 /**
  *
@@ -35,7 +34,6 @@ abstract class BaseController
     {
         $this->services = $services;
     }
-
 
     /**
      * Execute an action on the controller.

@@ -17,15 +17,16 @@ class RouteFinder
         $uriElements = explode('/', $this->uri);
 
         $check = true;
-        for ($i=0; $i < count($uriElements); $i++) {
+        for ($i = 0; $i < count($uriElements); $i++) {
             if ($uriElements[$i] === $routeElements[$i]) {
                 continue;
-            } else if ($routeElements[$i] === ':arg') {
+            } elseif ($routeElements[$i] === ':arg') {
                 continue;
             }
             $check = false;
             break;
         }
+
         return $check;
     }
 }

@@ -14,7 +14,8 @@ class ControllerDispatcher
 {
     private $request;
 
-    public function __construct(BaseRequest $request) {
+    public function __construct(BaseRequest $request)
+    {
         $this->request = $request;
     }
 

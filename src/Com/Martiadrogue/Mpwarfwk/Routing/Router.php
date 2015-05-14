@@ -5,7 +5,6 @@ namespace Com\Martiadrogue\Mpwarfwk\Routing;
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Request;
 use Com\Martiadrogue\Mpwarfwk\Exception\RouteNotFoundException;
 use Com\Martiadrogue\Mpwarfwk\Parser\RouteParserFactory;
-use Com\Martiadrogue\Mpwarfwk\Routing\RouteFinder;
 
 /**
  * Llegir la URL i carregar i retornar la classe corresponent.
@@ -22,7 +21,7 @@ class Router
     }
 
     /**
-     * comparar la uri amb cada ruta de l'array
+     * comparar la uri amb cada ruta de l'array.
      */
     public function submit()
     {
@@ -33,7 +32,7 @@ class Router
         if (!count($matches)) {
             throw new RouteNotFoundException();
         }
-        $route =  array_shift($matches);
+        $route = array_shift($matches);
         $route->fillArgs($uri);
 
         return $route;

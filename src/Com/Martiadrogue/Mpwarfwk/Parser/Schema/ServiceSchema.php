@@ -2,8 +2,6 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Parser\Schema;
 
-use Com\Martiadrogue\Mpwarfwk\Service\BaseService;
-
 class ServiceSchema implements Schemable
 {
     private $currentClass;

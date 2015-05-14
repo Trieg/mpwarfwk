@@ -9,12 +9,14 @@ class ParserFactory
     private $pattern;
     private $schema;
 
-    public function __construct($pattern, Schemable $schema) {
+    public function __construct($pattern, Schemable $schema)
+    {
         $this->schema = $schema;
         $this->pattern = $pattern;
     }
 
-    public function create() {
+    public function create()
+    {
         $extensionMap = [
             'json' => 'JsonParser',
             'ini' => 'IniParser',
@@ -35,7 +37,7 @@ class ParserFactory
 
     public function getParser($class, $filename)
     {
-        $namespace = __NAMESPACE__ . "\\Format\\" . $class;
+        $namespace = __NAMESPACE__.'\\Format\\'.$class;
 
         return new $namespace($filename, $this->schema);
     }

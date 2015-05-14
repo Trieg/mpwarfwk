@@ -2,6 +2,7 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Parser\Schema;
 
-interface Schemable {
+interface Schemable
+{
     public function cast(array $data);
 }

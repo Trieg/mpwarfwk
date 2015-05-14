@@ -25,7 +25,7 @@ class Route
         $uriExploded = explode('/', $uri);
         $pathExploded = explode('/', $this->path);
 
-        for ($i=0; $i < count($pathExploded); $i++) {
+        for ($i = 0; $i < count($pathExploded); $i++) {
             if ($pathExploded[$i] === ':arg') {
                 $this->parameters[] = $uriExploded[$i];
             }

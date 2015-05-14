@@ -40,7 +40,7 @@ class TwigService implements Templatable
         $loader = new Twig_Loader_Filesystem($this->templateHome);
         $twig = new Twig_Environment($loader, [
                 'cache' => $this->cacheHome,
-                'auto_reload' => true
+                'auto_reload' => true,
             ]);
         $template = $twig->loadTemplate($this->template);
 
