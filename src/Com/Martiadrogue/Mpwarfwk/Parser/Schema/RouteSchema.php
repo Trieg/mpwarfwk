@@ -9,6 +9,7 @@ class RouteSchema implements Schemable
     private $currentAlias;
     private $currentPath;
     private $currentDefaults;
+    private $currentServices;
     private $currentParameters;
 
     public function __construct()
@@ -17,6 +18,7 @@ class RouteSchema implements Schemable
         $this->currentPath = '';
         $this->currentDefaults = '';
         $this->currentParameters = [];
+        $this->currentServices = '';
     }
 
     public function cast(array $data)
@@ -30,7 +32,7 @@ class RouteSchema implements Schemable
             }
             $this->currentAlias = $key;
             $this->readRoute($value);
-            $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults, $this->currentParameters);
+            $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults, $this->currentParameters, $this->currentServices);
         }
 
         return $routes;
@@ -48,6 +50,8 @@ class RouteSchema implements Schemable
                 $this->currentPath = $this->formatPath($value);
             } elseif ($key === 'defaults') {
                 $this->currentDefaults = $value;
+            } elseif ($key === 'services') {
+                $this->currentServices = '../config/'.$value;
             }
         }
     }

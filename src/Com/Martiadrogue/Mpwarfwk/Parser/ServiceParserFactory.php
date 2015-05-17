@@ -8,10 +8,10 @@ class ServiceParserFactory
 {
     const PATTERN_SERVICES = '../config/{services.yaml,services.yml,services.json,services.ini}';
 
-    public static function create()
+    public static function create($servicesSource)
     {
         $schema = new ServiceSchema();
-        $parser = new ParserFactory(self::PATTERN_SERVICES, $schema);
+        $parser = new ParserFactory($servicesSource, $schema);
 
         return $parser->create();
     }

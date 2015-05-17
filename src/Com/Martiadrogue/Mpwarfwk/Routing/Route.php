@@ -11,13 +11,15 @@ class Route
     private $path;
     private $defaults;
     private $parameters;
+    private $servicesSource;
 
-    public function __construct($alias, $path, $defaults, $parameters)
+    public function __construct($alias, $path, $defaults, $parameters, $servicesSource)
     {
         $this->alias = $alias;
         $this->path = $path;
         $this->defaults = $defaults;
         $this->parameters = $parameters;
+        $this->servicesSource = $servicesSource;
     }
 
     public function fillArgs($uri)
@@ -60,5 +62,10 @@ class Route
     public function getActionParameters()
     {
         return $this->parameters;
+    }
+
+    public function getServicesSource()
+    {
+        return $this->servicesSource;
     }
 }

@@ -13,10 +13,18 @@ use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
 class ControllerDispatcher
 {
     private $request;
+    private $servicesSource;
 
-    public function __construct(BaseRequest $request)
+    public function __construct(BaseRequest $request, $servicesSource)
     {
         $this->request = $request;
+        $this->servicesSource = $servicesSource;
+    }
+
+    public static function createWithoutServicesSource(BaseRequest $request)
+    {
+        $this->request = $request;
+        $this->servicesSource = ServiceParserFactory::PATTERN_SERVICES;
     }
 
     public function dispatch($namespace, $action, Array $parameters)
@@ -39,7 +47,7 @@ class ControllerDispatcher
 
     public function injectDependencies(BaseController $controller)
     {
-        $parser = ServiceParserFactory::create();
+        $parser = ServiceParserFactory::create($this->servicesSource);
         $services = $parser->parse();
         $services['request'] = $this->request;
         $controller->setServices($services);

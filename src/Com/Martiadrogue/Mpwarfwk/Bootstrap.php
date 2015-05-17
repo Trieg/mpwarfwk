@@ -7,6 +7,7 @@ use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
 use Com\Martiadrogue\Mpwarfwk\Routing\Router;
 use Com\Martiadrogue\Mpwarfwk\Routing\Route;
 use Com\Martiadrogue\Mpwarfwk\Controller\ControllerDispatcher;
+use Com\Martiadrogue\Mpwarfwk\Parser\ServiceParserFactory;
 
 /**
  *
@@ -39,9 +40,19 @@ class Bootstrap
         $class = $route->getControllerClass();
         $action = $route->getControllerAction();
         $parameters = $route->getActionParameters();
+        $servicesSource = $this->getServicesSource($route);
 
-        $dispatcher = new ControllerDispatcher($request);
+        $dispatcher = new ControllerDispatcher($request, $servicesSource);
 
         return $dispatcher->dispatch($class, $action, $parameters);
+    }
+
+    private function getServicesSource(Route $route)
+    {
+        if (empty($route->getServicesSource())) {
+            return ServiceParserFactory::PATTERN_SERVICES;
+        }
+
+        return $route->getServicesSource();
     }
 }
