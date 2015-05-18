@@ -2,12 +2,13 @@
 
 namespace Com\Martiadrogue\Mpwarfwk;
 
-use Com\Martiadrogue\Mpwarfwk\Connection\Http\Response;
 use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
+use Com\Martiadrogue\Mpwarfwk\Connection\Http\HtmlResponse;
 use Com\Martiadrogue\Mpwarfwk\Routing\Router;
 use Com\Martiadrogue\Mpwarfwk\Routing\Route;
 use Com\Martiadrogue\Mpwarfwk\Controller\ControllerDispatcher;
 use Com\Martiadrogue\Mpwarfwk\Parser\ServiceParserFactory;
+use Com\Martiadrogue\Mpwarfwk\Exception\RouteNotFoundException;
 
 /**
  *
@@ -22,8 +23,12 @@ class Bootstrap
 
     private function handle(BaseRequest $request)
     {
-        $route = $this->getRoute($request);
-        $response = $this->reflectController($request, $route);
+        try {
+            $route = $this->getRoute($request);
+            $response = $this->reflectController($request, $route);
+        } catch (RouteNotFoundException $ex) {
+            return new HtmlResponse('404! Route Not Found.', 404);
+        }
         // check response and return it
         return $response;
     }
