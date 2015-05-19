@@ -59,12 +59,29 @@ class PdoService extends BaseService
         return $stmt->fetchAll();
     }
 
+    public function readByField($table, $field, $value, ...$fields)
+    {
+        $fields_list = implode(',', $fields);
+        var_dump("SELECT $fields_list FROM $table WHERE $field = $value");
+        $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE $field = $value LIMIT 100");
+
+        return $stmt->fetchAll();
+    }
+
     public function readByUniqueField($table, $field, $value, ...$fields)
     {
         $fields_list = implode(',', $fields);
-        $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE $field = $value LIMIT 100");
+        $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE $field = $value");
 
         return $stmt->fetch();
+    }
+
+    public function join($tableLeft, $table, $field, $value, ...$fields)
+    {
+        $fields_list = implode(',', $fields);
+        $stmt = $this->pdo->query("SELECT $fields_list FROM $tableLeft LEFT JOIN $table USING($field) WHERE $table.$field = $value");
+
+        return $stmt->fetchAll();
     }
 
     public function update($table, ...$values)
