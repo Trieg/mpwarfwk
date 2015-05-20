@@ -6,7 +6,7 @@ use Com\Martiadrogue\Mpwarfwk\Parser\Schema\ServiceSchema;
 
 class ServiceParserFactory
 {
-    const PATTERN_SERVICES = '../config/{services.yaml,services.yml,services.json,services.ini}';
+    const PATTERN_SERVICES = '../config/{services.php,services.yaml,services.yml,services.json,services.ini}';
 
     public static function create($servicesSource)
     {

@@ -6,7 +6,7 @@ use Com\Martiadrogue\Mpwarfwk\Parser\Schema\RouteSchema;
 
 class RouteParserFactory
 {
-    const PATTERN_ROUTES = '../config/{routing.yaml,routing.yml,routing.json,routing.ini}';
+    const PATTERN_ROUTES = '../config/{routing.php,routing.yaml,routing.yml,routing.json,routing.ini}';
 
     public static function create()
     {

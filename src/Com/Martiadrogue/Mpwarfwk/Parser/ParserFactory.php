@@ -22,6 +22,7 @@ class ParserFactory
             'ini' => 'IniParser',
             'yaml' => 'YamlParser',
             'yml' => 'YamlParser',
+            'php' => 'PhpParser',
         ];
         foreach (glob($this->pattern, GLOB_BRACE) as $filename) {
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
