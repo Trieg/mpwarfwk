@@ -21,7 +21,7 @@ class Bootstrap
         $response->send();
     }
 
-    private function handle(BaseRequest $request)
+    protected function handle(BaseRequest $request)
     {
         try {
             $route = $this->getRoute($request);
