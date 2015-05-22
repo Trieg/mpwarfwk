@@ -62,7 +62,6 @@ class PdoService extends BaseService
     public function readByField($table, $field, $value, ...$fields)
     {
         $fields_list = implode(',', $fields);
-        var_dump("SELECT $fields_list FROM $table WHERE $field = $value");
         $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE $field = $value LIMIT 100");
 
         return $stmt->fetchAll();
