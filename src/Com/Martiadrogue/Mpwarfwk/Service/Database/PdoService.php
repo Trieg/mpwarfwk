@@ -35,6 +35,20 @@ class PdoService extends BaseService
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    public function select($sql)
+    {
+        $stmt = $this->pdo->query($sql);
+
+        return $stmt->fetchAll();
+    }
+
+    public function query($sql)
+    {
+        $stmt = $this->pdo->prepare($sql);
+
+        return $stmt->execute();
+    }
+
     public function create($table, ...$values)
     {
         $markersList = $this->getMarkersList($values);
@@ -75,7 +89,15 @@ class PdoService extends BaseService
         return $stmt->fetch();
     }
 
-    public function join($tableLeft, $table, $field, $value, ...$fields)
+    public function join($tableLeft, $table, $field, ...$fields)
+    {
+        $fields_list = implode(',', $fields);
+        $stmt = $this->pdo->query("SELECT $fields_list FROM $tableLeft LEFT JOIN $table USING($field)");
+
+        return $stmt->fetchAll();
+    }
+
+    public function joinByField($tableLeft, $table, $field, $value, ...$fields)
     {
         $fields_list = implode(',', $fields);
         $stmt = $this->pdo->query("SELECT $fields_list FROM $tableLeft LEFT JOIN $table USING($field) WHERE $table.$field = $value");
@@ -83,18 +105,19 @@ class PdoService extends BaseService
         return $stmt->fetchAll();
     }
 
-    public function update($table, ...$values)
+    public function update($table, $field, $value, ...$data)
     {
-        $markersList = $this->getMarkersList($values);
-        $stmt = $this->pdo->prepare("REPLACE INTO $table VALUES ($markersList)");
+        $markersList = $this->getSetMarkersList($data);
+        $values = $this->getValues($data, $value);
+        $stmt = $this->pdo->prepare("UPDATE $table SET $markersList WHERE $field = ?");
 
         return $stmt->execute($values);
     }
 
-    public function delete($table, ...$ids)
+    public function delete($table, $field, $value)
     {
         $markersList = $this->getMarkersList($ids);
-        $stmt = $this->pdo->prepare("DELETE FROM $table WHERE ID IN ($markersList)");
+        $stmt = $this->pdo->prepare("DELETE FROM $table WHERE $field IN ($value)");
 
         return $stmt->execute($ids);
     }
@@ -119,6 +142,29 @@ class PdoService extends BaseService
         $this->charset = $config['charset'];
         $this->username = $config['username'];
         $this->password = $config['password'];
+    }
+
+    private function getSetMarkersList($values)
+    {
+        $markers = [];
+        $lastValue = count($values) - 1;
+        for ($i=0; $i < $lastValue; $i++) {
+            $markers[] = $i % 2 === 0 ? $values[$i]." = " : "?, ";
+        }
+        $markers[] = '? ';
+
+        return implode('', $markers);
+    }
+
+    private function getValues($newValues, $value)
+    {
+        $values = [];
+        for ($i = 1; $i < count($newValues); $i += 2 ) {
+            $values[] =  $newValues[$i];
+        }
+        $values[] = $value;
+
+        return $values;
     }
 
     private function getMarkersList($values)
