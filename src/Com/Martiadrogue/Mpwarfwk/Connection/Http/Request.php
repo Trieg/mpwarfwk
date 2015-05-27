@@ -45,8 +45,30 @@ class Request extends BaseRequest
         return $this->server->getItem('REQUEST_URI').'/';
     }
 
+    public function getPost($key)
+    {
+        return $this->post->getItem($key);
+    }
+
     public function getHttpHost()
     {
         return $this->server->getItem('HTTP_HOST');
+    }
+
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    public function getClientAddresses()
+    {
+        $ipClient = $this->server->getItem('REMOTE_ADDR');
+        if (!empty($this->server->getItem('HTTP_CLIENT_IP'))) {
+            $ipClient = $this->server->getItem('HTTP_CLIENT_IP');
+        } elseif (!empty($this->server->getItem('HTTP_X_FORWARDED_FOR'))) {
+            $ipClient = $this->server->getItem('HTTP_X_FORWARDED_FOR');
+        }
+
+        return $ipClient;
     }
 }
