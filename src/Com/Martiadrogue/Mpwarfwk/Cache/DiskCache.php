@@ -5,7 +5,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Cache;
 class DiskCache extends BaseCache
 {
 
-    const CACHE_PATH = '/tmp/cachedisk/';
+    const CACHE_PATH = '../cache/model/';
 
     function __construct()
     {
@@ -14,7 +14,7 @@ class DiskCache extends BaseCache
 
     public function get($keyName)
     {
-        if (file_exists(self::CACHE_PATH)) {
+        if (file_exists(self::CACHE_PATH . $keyName)) {
             return file_get_contents(self::CACHE_PATH . $keyName);
         }
 
@@ -28,6 +28,6 @@ class DiskCache extends BaseCache
 
     public function delete($keyName)
     {
-        unlilk(self::CACHE_PATH . $keyName);
+        unlink(self::CACHE_PATH . $keyName);
     }
 }

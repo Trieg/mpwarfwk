@@ -4,9 +4,9 @@ namespace Com\Martiadrogue\Mpwarfwk\Cache;
 
 abstract class BaseCache
 {
-    const CACHE_PATH = '/tmp/cachedisk/';
+    const CACHE_PATH = '../cache/model/';
 
-    function __construct()
+    public function __construct()
     {
         if (!file_exists(self::CACHE_PATH)) {
             mkdir(self::CACHE_PATH, 0700);

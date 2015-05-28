@@ -2,16 +2,18 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Cache;
 
+use \Memcached;
+
 class MemoryCache extends BaseCache
 {
 
     private $memcached;
 
 
-    function __construct()
+    public function __construct()
     {
-        parent::__construct();
         $this->memcached = new Memcached();
+        $this->memcached->addServer('localhost', 11211);
     }
 
     public function get($keyName)
