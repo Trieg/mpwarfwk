@@ -9,6 +9,7 @@ use Com\Martiadrogue\Mpwarfwk\Routing\Route;
 use Com\Martiadrogue\Mpwarfwk\Controller\ControllerDispatcher;
 use Com\Martiadrogue\Mpwarfwk\Parser\ServiceParserFactory;
 use Com\Martiadrogue\Mpwarfwk\Exception\RouteNotFoundException;
+use Com\Martiadrogue\Mpwarfwk\Cache\MemoryCache;
 
 /**
  *
@@ -29,7 +30,7 @@ class Bootstrap
         } catch (RouteNotFoundException $ex) {
             return new HtmlResponse('404! Route Not Found.', 404);
         }
-        // check response and return it
+
         return $response;
     }
 
@@ -42,14 +43,18 @@ class Bootstrap
 
     private function reflectController(BaseRequest $request, Route $route)
     {
-        $class = $route->getControllerClass();
-        $action = $route->getControllerAction();
-        $parameters = $route->getActionParameters();
-        $servicesSource = $this->getServicesSource($route);
+        $response = $this->getCache($route);
+        if (!$response) {
+            $class = $route->getControllerClass();
+            $action = $route->getControllerAction();
+            $parameters = $route->getActionParameters();
+            $servicesSource = $this->getServicesSource($route);
+            $dispatcher = new ControllerDispatcher($request, $servicesSource);
 
-        $dispatcher = new ControllerDispatcher($request, $servicesSource);
+            $response = $dispatcher->dispatch($class, $action, $parameters);
+        }
 
-        return $dispatcher->dispatch($class, $action, $parameters);
+        return $response;
     }
 
     private function getServicesSource(Route $route)
@@ -59,5 +64,13 @@ class Bootstrap
         }
 
         return $route->getServicesSource();
+    }
+
+    private function getCache(Route $route)
+    {
+        $cache = new MemoryCache();
+        $hash = md5($route->getPath());
+
+        return unserialize($cache->get($hash));
     }
 }
