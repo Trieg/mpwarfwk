@@ -148,8 +148,8 @@ class PdoService extends BaseService
     {
         $markers = [];
         $lastValue = count($values) - 1;
-        for ($i=0; $i < $lastValue; $i++) {
-            $markers[] = $i % 2 === 0 ? $values[$i]." = " : "?, ";
+        for ($i = 0; $i < $lastValue; $i++) {
+            $markers[] = $i % 2 === 0 ? $values[$i].' = ' : '?, ';
         }
         $markers[] = '? ';
 
@@ -159,8 +159,8 @@ class PdoService extends BaseService
     private function getValues($newValues, $value)
     {
         $values = [];
-        for ($i = 1; $i < count($newValues); $i += 2 ) {
-            $values[] =  $newValues[$i];
+        for ($i = 1; $i < count($newValues); $i += 2) {
+            $values[] = $newValues[$i];
         }
         $values[] = $value;
 

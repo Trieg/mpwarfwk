@@ -13,10 +13,10 @@ class SphinxService
     {
         include '/var/lib/sphinx/api/sphinxapi.php';
         $this->sphinx = new \SphinxClient();
-        $this->sphinx->SetServer( '127.0.0.1', 9312);
-        $this->sphinx->SetMatchMode( SPH_MATCH_EXTENDED );
-        $this->sphinx->SetSortMode( SPH_SORT_RELEVANCE );
-        $this->sphinx->SetLimits( 0, 5 );
+        $this->sphinx->SetServer('127.0.0.1', 9312);
+        $this->sphinx->SetMatchMode(SPH_MATCH_EXTENDED);
+        $this->sphinx->SetSortMode(SPH_SORT_RELEVANCE);
+        $this->sphinx->SetLimits(0, 5);
     }
 
     public function addQuery($queryString, $index)

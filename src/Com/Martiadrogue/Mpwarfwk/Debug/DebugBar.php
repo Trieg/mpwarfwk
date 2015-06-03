@@ -7,7 +7,6 @@ use Com\Martiadrogue\Mpwarfwk\Debug\Collector\MemoryCollector;
 use Com\Martiadrogue\Mpwarfwk\Debug\Collector\PhpInfoCollector;
 use Com\Martiadrogue\Mpwarfwk\Debug\Collector\TimeCollector;
 
-
 class DebugBar
 {
     private $collectors;
@@ -24,6 +23,7 @@ class DebugBar
     {
         $output = $this->getOutput();
         $styles = 'style="background-color:#aaa;border-top: 4px solid #777;padding:6px;-webkit-box-shadow: inset 0 20px 10px -20px rgba(0,0,0,0.8);-moz-box-shadow: inset 0 20px 10px -20px rgba(0,0,0,0.8);box-shadow: inset 0 20px 10px -20px rgba(0,0,0,0.8);"';
+
         return '<div '.$styles.'><p>'.$output.'</p></div>';
     }
 
@@ -37,10 +37,11 @@ class DebugBar
     }
 
     /**
-     * Checks if a data collector has been added
+     * Checks if a data collector has been added.
      *
      * @param string $name
-     * @return boolean
+     *
+     * @return bool
      */
     private function hasCollector($name)
     {
@@ -51,7 +52,7 @@ class DebugBar
     {
         $output = '';
         foreach ($this->collectors as $key => $value) {
-            $output .= $key . ': ' . $value->collect() . '</p><p>';
+            $output .= $key.': '.$value->collect().'</p><p>';
         }
 
         return $output;
@@ -62,6 +63,5 @@ class DebugBar
         foreach ($this->collectors as $value) {
             $value->regist();
         }
-
     }
 }

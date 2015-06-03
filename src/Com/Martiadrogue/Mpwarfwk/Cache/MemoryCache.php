@@ -2,13 +2,11 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Cache;
 
-use \Memcached;
+use Memcached;
 
 class MemoryCache extends BaseCache
 {
-
     private $memcached;
-
 
     public function __construct()
     {

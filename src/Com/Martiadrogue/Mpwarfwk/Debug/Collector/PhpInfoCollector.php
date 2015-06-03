@@ -10,7 +10,7 @@ class PhpInfoCollector implements Collectable
     private $version;
     const TAG_NAME = 'php';
 
-    function __construct()
+    public function __construct()
     {
         $this->version;
     }

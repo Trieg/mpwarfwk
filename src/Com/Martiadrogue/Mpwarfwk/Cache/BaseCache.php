@@ -13,19 +13,20 @@ abstract class BaseCache
         }
     }
 
-    public abstract function get($key);
+    abstract public function get($key);
 
-    public abstract function set($key, $value, $ttl);
+    abstract public function set($key, $value, $ttl);
 
-    public abstract function delete($key);
+    abstract public function delete($key);
 
     /**
-     * $parameters = ['controller' => 'name', 'param1' => 'parameters', 'param2' => 'parameters']
+     * $parameters = ['controller' => 'name', 'param1' => 'parameters', 'param2' => 'parameters'].
      */
     public function getKeyName(Array $parameters)
     {
         ksort($parameters);
-        $key = implode('',$parameters);
+        $key = implode('', $parameters);
+
         return md5($key);
     }
 }

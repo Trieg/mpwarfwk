@@ -17,7 +17,7 @@ class PhpParser implements Parsable
 
     public function parse()
     {
-        $data = require_once($this->file);
+        $data = require_once $this->file;
 
         return $this->schema->cast($data);
     }
