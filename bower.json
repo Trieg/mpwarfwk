@@ -1,0 +1,22 @@
+{
+  "name": "martiadrogue/mpwarfwk",
+  "version": "0.0.0",
+  "homepage": "https://github.com/martiadrogue/mpwarfwk",
+  "description": "a MVC framework",
+  "main": "src/Com/Martiadrogue/Mpwarfwk/Bootstrap.php",
+  "keywords": [
+    "mvc",
+    "framework"
+  ],
+  "authors": [
+    "Martí Adrogué <marti.adrogue@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
