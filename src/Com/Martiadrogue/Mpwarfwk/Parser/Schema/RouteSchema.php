@@ -18,7 +18,7 @@ class RouteSchema implements Schemable
         $this->currentPath = '';
         $this->currentDefaults = '';
         $this->currentParameters = [];
-        $this->currentServices = '';
+        $this->ressetService();
     }
 
     public function cast(array $data)
@@ -33,6 +33,7 @@ class RouteSchema implements Schemable
             $this->currentAlias = $key;
             $this->readRoute($value);
             $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults, $this->currentParameters, $this->currentServices);
+            $this->ressetService();
         }
 
         return $routes;
@@ -64,5 +65,10 @@ class RouteSchema implements Schemable
         }
 
         return $value.'/';
+    }
+
+    public function ressetService()
+    {
+        $this->currentServices = '';
     }
 }
