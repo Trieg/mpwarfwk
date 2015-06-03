@@ -33,7 +33,6 @@ class RouteSchema implements Schemable
             $this->currentAlias = $key;
             $this->readRoute($value);
             $routes[] = new Route($this->currentAlias, $this->currentPath, $package.$this->currentDefaults, $this->currentParameters, $this->currentServices);
-            $this->ressetService();
         }
 
         return $routes;
@@ -46,6 +45,7 @@ class RouteSchema implements Schemable
 
     private function readRoute($route)
     {
+        $this->ressetService();
         foreach ($route as $key => $value) {
             if ($key === 'path') {
                 $this->currentPath = $this->formatPath($value);
