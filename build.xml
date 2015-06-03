@@ -179,7 +179,7 @@
          unless="phpcpd.done"
          depends="prepare"
          description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${toolsdir}phpcpd" taskname="phpcpd">
+  <exec executable="/var/www/mpwarfwk/vendor/bin/phpcpd" taskname="phpcpd">
    <arg value="--log-pmd" />
    <arg path="${basedir}/build/logs/pmd-cpd.xml" />
    <arg path="${basedir}/src" />
