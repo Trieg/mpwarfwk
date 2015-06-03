@@ -33,5 +33,10 @@
         "psr-4": {
           "Com\\Martiadrogue\\Mpwarfwk\\": "src/Com/Martiadrogue/Mpwarfwk/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "Com\\Martiadrogue\\MpwarfwkTest\\": "tests/Com/Martiadrogue/MpwarfwkTest/Unit"
+        }
     }
 }
