@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="name-of-project" default="build">
- <!-- By default, we assume all tools to be on the $PATH -->
  <property name="toolsdir" value="${basedir}/vendor/bin/"/>
 
  <target name="build"
@@ -82,7 +81,7 @@
          unless="phploc.done"
          depends="prepare"
          description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${toolsdir}phploc" taskname="phploc">
+  <exec executable="/var/www/mpwarfwk/vendor/bin/phploc" taskname="phploc">
    <arg value="--count-tests" />
    <arg value="--log-csv" />
    <arg path="${basedir}/build/logs/phploc.csv" />
