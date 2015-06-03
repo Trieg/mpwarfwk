@@ -192,7 +192,7 @@
          unless="phpunit.done"
          depends="prepare"
          description="Run unit tests with PHPUnit">
-  <exec executable="${toolsdir}phpunit" failonerror="true" taskname="phpunit">
+  <exec executable="/var/www/mpwarfwk/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
    <arg value="--configuration"/>
    <arg path="${basedir}/build/phpunit.xml"/>
   </exec>
