@@ -6,7 +6,7 @@
         </collector>
 
         <generator output="build">
-            <enrich base="${basedir}/logs">
+            <enrich base="/var/www/mpwarfwk/build/logs">
                 <source type="build" />
                 <source type="git">
                     <history enabled="true" limit="15" />
