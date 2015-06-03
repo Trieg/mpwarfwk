@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpdox xmlns="http://phpdox.net/config">
-    <project name="Jumph" source="src" workdir="build/phpdox">
+<phpdox xmlns="http://xml.phpdox.net/config">
+    <project name="Mpwarfwk" source="../src" workdir="build/phpdox">
         <collector publiconly="false">
             <include mask="*.php" />
         </collector>
