@@ -27,7 +27,7 @@
         "phpunit/phpunit": "~4.6",
         "theseer/phpdox": "~0.8"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
           "Com\\Martiadrogue\\Mpwarfwk\\": "src/Com/Martiadrogue/Mpwarfwk/"
