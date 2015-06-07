@@ -114,12 +114,12 @@ class PdoService extends BaseService
         return $stmt->execute($values);
     }
 
-    public function delete($table, $field, $value)
+    public function delete($table, $field, ...$values)
     {
-        $markersList = $this->getMarkersList($ids);
-        $stmt = $this->pdo->prepare("DELETE FROM $table WHERE $field IN ($value)");
+        $markersList = $this->getMarkersList($values);
+        $stmt = $this->pdo->prepare("DELETE FROM $table WHERE $field IN ($markersList)");
 
-        return $stmt->execute($ids);
+        return $stmt->execute($values);
     }
 
     private function connect()
@@ -167,7 +167,7 @@ class PdoService extends BaseService
         return $values;
     }
 
-    private function getMarkersList($values)
+    private function getMarkersList(array $values)
     {
         $markers = array_map(function ($item) { return '?'; }, $values);
 
