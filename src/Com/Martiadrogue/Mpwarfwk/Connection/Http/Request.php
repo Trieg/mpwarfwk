@@ -3,6 +3,7 @@
 namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
+use Com\Martiadrogue\Mpwarfwk\Connection\Http\Filters\Sanitizer;
 
 /**
  *
@@ -16,7 +17,7 @@ class Request extends BaseRequest
     private $server;
     private $files;
 
-    private function __construct(Session $session, $get, $post, $files, $cookies, $server)
+    private function __construct(Session $session, array $get, array $post, array $files, array $cookies, array $server)
     {
         $this->session = $session;
         $this->get = new Parameter($get);
@@ -47,7 +48,10 @@ class Request extends BaseRequest
 
     public function getPost($key)
     {
-        return $this->post->getItem($key);
+        $sanitizer = new Sanitizer(ENT_NOQUOTES, 'UTF-8');
+        $value = $this->post->getItem($key);
+
+        return $sanitizer->sanitize($value);
     }
 
     public function getHttpHost()

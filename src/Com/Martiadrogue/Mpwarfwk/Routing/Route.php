@@ -2,6 +2,8 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Routing;
 
+use Com\Martiadrogue\Mpwarfwk\Connection\Http\Filters\Sanitizer;
+
 /**
  *
  */
@@ -18,7 +20,7 @@ class Route
         $this->alias = $alias;
         $this->path = $path;
         $this->defaults = $defaults;
-        $this->parameters = $parameters;
+        $this->setActionParameters($parameters);
         $this->servicesSource = $servicesSource;
     }
 
@@ -59,6 +61,13 @@ class Route
         return 'executeIndex';
     }
 
+    public function setActionParameters($parameters)
+    {
+        $healthyParams = $this->cleanData($parameters);
+
+        $this->parameters = $healthyParams;
+    }
+
     public function getActionParameters()
     {
         return $this->parameters;
@@ -67,5 +76,15 @@ class Route
     public function getServicesSource()
     {
         return $this->servicesSource;
+    }
+
+    private function cleanData(array $data)
+    {
+        $sanitizer = new Sanitizer(ENT_NOQUOTES, 'UTF-8');
+        for ($i=0; $i < count($data); $i++) {
+            $data[$i] = $sanitizer->sanitize($data[$i]);
+        }
+
+        return $data;
     }
 }
