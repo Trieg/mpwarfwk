@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
+        "ext-memcached": "~2.2",
         "symfony/yaml": "~2.6",
         "twig/twig": "~1.18",
         "smarty/smarty": "~3.1"
