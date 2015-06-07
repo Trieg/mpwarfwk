@@ -17,8 +17,17 @@ class Session
         $_SESSION[$key] = $value;
     }
 
+    public function unsetData($key)
+    {
+        unset($_SESSION[$key]);
+    }
+
     public function getData($key)
     {
-        return $_SESSION[$key];
+        if (array_key_exists($key,$_SESSION)) {
+            return $_SESSION[$key];
+        }
+
+        return;
     }
 }
