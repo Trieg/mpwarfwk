@@ -16,6 +16,8 @@ class Sanitizer
 
     public function sanitize($value)
     {
-        return htmlentities($value, $this->level, $this->charset);
+        $trimmedValue = trim($value);
+
+        return htmlentities($trimmedValue, $this->level, $this->charset);
     }
 }
