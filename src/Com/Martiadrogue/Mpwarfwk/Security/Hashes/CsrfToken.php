@@ -3,6 +3,7 @@
 namespace Com\Martiadrogue\Mpwarfwk\Security\Hashes;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Session;
+use Com\Martiadrogue\Mpwarfwk\Exception\TokenMismatchException;
 
 class CsrfToken
 {
@@ -24,12 +25,10 @@ class CsrfToken
 
     public function check($token)
     {
-        if ($token === $this->session->getData('csrf-token')) {
-            $this->session->unsetData('csrf-token');
-
-            return true;
+        if ($token !== $this->session->getData('csrf-token')) {
+            throw new TokenMismatchException();
         }
 
-        return false;
+        $this->session->unsetData('csrf-token');
     }
 }
