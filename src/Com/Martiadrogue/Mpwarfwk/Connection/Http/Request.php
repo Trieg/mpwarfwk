@@ -3,7 +3,7 @@
 namespace Com\Martiadrogue\Mpwarfwk\Connection\Http;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\BaseRequest;
-use Com\Martiadrogue\Mpwarfwk\Connection\Http\Filters\Sanitizer;
+use Com\Martiadrogue\Mpwarfwk\Security\Filters\Sanitizer;
 
 /**
  *

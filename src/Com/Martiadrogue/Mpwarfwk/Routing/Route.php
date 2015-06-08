@@ -2,7 +2,7 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Routing;
 
-use Com\Martiadrogue\Mpwarfwk\Connection\Http\Filters\Sanitizer;
+use Com\Martiadrogue\Mpwarfwk\Security\Filters\Sanitizer;
 
 /**
  *

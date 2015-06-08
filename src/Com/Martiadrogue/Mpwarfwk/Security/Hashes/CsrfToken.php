@@ -1,6 +1,6 @@
 <?php
 
-namespace Com\Martiadrogue\Mpwarfwk\Connection\Http\Filters;
+namespace Com\Martiadrogue\Mpwarfwk\Security\Hashes;
 
 use Com\Martiadrogue\Mpwarfwk\Connection\Http\Session;
 
