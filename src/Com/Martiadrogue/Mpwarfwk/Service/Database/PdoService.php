@@ -4,6 +4,7 @@ namespace Com\Martiadrogue\Mpwarfwk\Service\Database;
 
 use PDO;
 use Com\Martiadrogue\Mpwarfwk\Service\BaseService;
+use Com\Martiadrogue\Mpwarfwk\Parser\ConnectionParserFactory;
 
 /**
  * http://www.devshed.com/c/a/mysql/building-an-orm-in-php/.
@@ -23,9 +24,8 @@ class PdoService extends BaseService
      *
      * http://stackoverflow.com/questions/8992795/set-pdo-to-throw-exceptions-by-default.
      */
-    public function __construct(array $params)
+    public function __construct(ConnectionParserFactory $connectionParser)
     {
-        $connectionParser = $params[0];
         $parser = $connectionParser::create();
         $config = $parser->parse();
 

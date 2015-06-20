@@ -2,6 +2,8 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Parser\Schema;
 
+use ReflectionClass;
+
 class ServiceSchema implements Schemable
 {
     private $currentClass;
@@ -18,7 +20,9 @@ class ServiceSchema implements Schemable
         $this->services = [];
         foreach ($data as $key => $value) {
             $this->readService($value);
-            $this->services[$key] = new $this->currentClass($this->currentParameters);
+            $reflector = new ReflectionClass($this->currentClass);
+            $this->services[$key] = $reflector->newInstanceArgs($this->currentParameters);
+            $this->currentParameters = [];
         }
 
         return $this->services;
