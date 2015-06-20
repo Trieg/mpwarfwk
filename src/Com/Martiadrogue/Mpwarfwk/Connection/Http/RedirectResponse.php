@@ -47,7 +47,6 @@ class RedirectResponse implements Responsible
         mb_http_output('UTF-8');
         header($this->headers[$this->status]);
         if ($this->status === 404) {
-
             return;
         }
         header('Location: '.$this->url);
