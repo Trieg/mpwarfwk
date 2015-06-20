@@ -7,9 +7,12 @@ use Com\Martiadrogue\Mpwarfwk\Security\Rules\Logger;
 class NotEmpty implements Validable
 {
     private $log;
+    private $tag;
 
-    public function __construct(Logger $log) {
+    public function __construct($tag, Logger $log)
+    {
         $this->log = $log;
+        $this->tag = $tag;
     }
 
     public function validate($value)
@@ -17,11 +20,11 @@ class NotEmpty implements Validable
         $trimmedValue = trim($value);
 
         if (empty($trimmedValue)) {
-            $this->log->addMessage($value.' must not be empty.');
+            $this->log->addMessage($this->tag.' must not be empty.');
 
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 }

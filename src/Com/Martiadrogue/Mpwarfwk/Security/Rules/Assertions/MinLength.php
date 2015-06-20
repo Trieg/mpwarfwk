@@ -6,10 +6,13 @@ use Com\Martiadrogue\Mpwarfwk\Security\Rules\Logger;
 
 class MinLength implements Validable
 {
+    private $tag;
     private $min;
     private $log;
 
-    public function __construct($min, Logger $log) {
+    public function __construct($tag, $min, Logger $log)
+    {
+        $this->tag = $tag;
         $this->min = $min;
         $this->log = $log;
     }
@@ -17,11 +20,11 @@ class MinLength implements Validable
     public function validate($value)
     {
         if (strlen($value) < $this->min) {
-            $this->log->addMessage($value.' must be greater than '.$this->min.'.');
+            $this->log->addMessage($this->tag.' must be greater than '.$this->min.'.');
 
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Com\Martiadrogue\Mpwarfwk\Security\Rules\Assertions;
 
-interface Validable {
+interface Validable
+{
     public function validate($value);
 }

@@ -8,30 +8,36 @@ class Validator
 {
     private $ruleSet;
     private $violations;
+    private $valid;
 
     public function __construct(Logger $violations)
     {
         $this->ruleSet = [];
         $this->violations = $violations;
+        $this->valid = true;
     }
 
-    public function addRule(Validable $newRule)
+    public function addRule($tag, Validable $newRule)
     {
-        $this->ruleSet[] = $newRule;
+        $this->ruleSet[$tag][] = $newRule;
     }
 
-    public function validate($value)
+    public function validate($tag, $value)
     {
-        $check = true;
-        foreach ($this->ruleSet as $rule) {
-            $check &= $rule->validate($value);
+        foreach ($this->ruleSet[$tag] as $rule) {
+            if (!$rule->validate($value)) {
+                $this->valid = false;
+            }
         }
-
-        return $check;
     }
 
     public function getViolations()
     {
         return $this->violations->getLog();
+    }
+
+    public function isValid()
+    {
+        return $this->valid;
     }
 }
