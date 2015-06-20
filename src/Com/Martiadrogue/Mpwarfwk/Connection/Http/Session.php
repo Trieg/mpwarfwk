@@ -24,7 +24,7 @@ class Session
 
     public function getData($key)
     {
-        if (array_key_exists($key,$_SESSION)) {
+        if (array_key_exists($key, $_SESSION)) {
             return $_SESSION[$key];
         }
 
