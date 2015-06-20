@@ -81,7 +81,7 @@ class Route
     private function cleanData(array $data)
     {
         $sanitizer = new Sanitizer(ENT_NOQUOTES, 'UTF-8');
-        for ($i=0; $i < count($data); $i++) {
+        for ($i = 0; $i < count($data); $i++) {
             $data[$i] = $sanitizer->sanitize($data[$i]);
         }
 
