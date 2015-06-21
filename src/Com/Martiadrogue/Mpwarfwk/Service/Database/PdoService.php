@@ -84,7 +84,8 @@ class PdoService extends BaseService
     public function readByUniqueField($table, $field, $value, ...$fields)
     {
         $fields_list = implode(',', $fields);
-        $stmt = $this->pdo->query("SELECT $fields_list FROM $table WHERE $field = $value");
+        $stmt = $this->pdo->prepare("SELECT $fields_list FROM $table WHERE $field = ?");
+        $stmt->execute([$value]);
 
         return $stmt->fetch();
     }
